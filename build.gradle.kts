@@ -1,5 +1,7 @@
 plugins {
-    id("java")
+    `java-library`
+    `maven-publish`
+    id("com.gradle.plugin-publish") version "1.3.1"
 }
 
 group = "dev.jakubbb.ramora"
@@ -34,6 +36,28 @@ tasks.test {
     useJUnitPlatform()
 }
 
+gradlePlugin {
+    website = "https://github.com/jakubbbdev/ramora"
+    vcsUrl = "https://github.com/jakubbbdev/ramora"
+
+    plugins.create("ramora") {
+        id = "dev.jakubbb.ramora"
+        implementationClass = "dev.jakubbb.ramora.RamoraPlugin"
+        displayName = "Ramora"
+        description = ""
+        tags = listOf("maven", "maven-publish", "sonatype", "lombok", "fastutils")
+    }
+}
+
+
+publishing {
+    repositories {
+        mavenLocal()
+    }
+    publications {
+        create<MavenPublication>("pluginMaven")
+    }
+}
 
 java {
     withSourcesJar()

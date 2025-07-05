@@ -1,0 +1,21 @@
+{
+  "name": "Ramora Gradle plugin",
+  "image": "ubuntu:latest",
+  "customizations" : {
+    "jetbrains" : {
+      "backend" : "IntelliJ"
+    }
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/git" : {},
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {},
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "21.0.7",
+      "installGradle": "true"
+    }
+  },
+  "runArgs": [
+    "--add-host=host.docker.internal:host-gateway"
+  ],
+  "remoteUser": "ubuntu"
+}
